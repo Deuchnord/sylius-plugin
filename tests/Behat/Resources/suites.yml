@@ -1,0 +1,36 @@
+# Put your Behat suites definitions here
+
+default:
+    suites:
+        greeting_customer:
+            contexts_services:
+                - acme_sylius_example.context.ui.shop.welcome
+
+            filters:
+                tags: "@greeting_customer"
+
+        ui_managing_heavy_objects:
+            contexts_services:
+                - sylius.behat.context.hook.doctrine_orm
+
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.shipping
+                - sylius.behat.context.setup.payment
+                - sylius.behat.context.setup.product
+                - sylius.behat.context.setup.order
+                - sylius.behat.context.setup.admin_security
+
+                - sylius.behat.context.transform.lexical
+                - sylius.behat.context.transform.product
+                - sylius.behat.context.transform.customer
+                - sylius.behat.context.transform.address
+                - sylius.behat.context.transform.shipping_method
+                - sylius.behat.context.transform.payment
+                - sylius.behat.context.transform.order
+
+                - sylius.behat.context.ui.admin.managing_orders
+
+                - tests.acme.sylius_example_plugin.behat.context.setup.product_context
+
+            filters:
+                tags: "@managing_heavy_objects && @ui"
